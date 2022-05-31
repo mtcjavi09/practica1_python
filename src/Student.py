@@ -1,5 +1,5 @@
 #Import para crear la app
-from tkinter import Label, Frame, Tk, Canvas, Entry, Button, W, E
+from tkinter import Label, Frame, Tk, Canvas, Entry, Button, W, E, Listbox, END
 #Import driver de conexión para postgresql
 import psycopg2
 
@@ -7,7 +7,7 @@ import psycopg2
 root = Tk()
 root.title("Python y PostgreSQL")
 
-def guardaEstudiante(name, address, age):
+def guardaEstudiante(name, age, address):
     connection= psycopg2.connect(dbname="daads17to2qqm5",
                      user="dstunsoypdpdpn",
                      password="cbb5e68b3caffdb4b5dcfb015ea18957192c8c55560188602e666ddf3e881705",
@@ -15,12 +15,27 @@ def guardaEstudiante(name, address, age):
                      port="5432")                     
     cursor= connection.cursor()
     query = '''INSERT INTO students(name, age, address) VALUES(%s, %s, %s)'''
-    nombre = name
-    edad = age
-    direccion = address
-    cursor.execute(query, (nombre, edad, direccion))
+    
+    cursor.execute(query, (name, age, address))
     print("Datos guardados")
     connection.commit()
+
+def visualizaEstudiante():
+    connection= psycopg2.connect(dbname="daads17to2qqm5",
+                     user="dstunsoypdpdpn",
+                     password="cbb5e68b3caffdb4b5dcfb015ea18957192c8c55560188602e666ddf3e881705",
+                     host="ec2-34-230-153-41.compute-1.amazonaws.com",
+                     port="5432")                     
+    cursor= connection.cursor()
+    query = '''SELECT * FROM students'''
+    cursor.execute(query)
+    row = cursor.fetchall()
+    listBox = Listbox(frame, width=20, height=5)
+    listBox.grid(row=10, columnspan=4, sticky=W+E)
+    for x in row:
+        listBox.insert(END, x)
+    connection.commit()
+    connection.close()
     
 #Se crea el canva
 canvas=Canvas(root, height=380, width=400)
@@ -54,4 +69,7 @@ button = Button(frame, text="Add", command=lambda:guardaEstudiante(entryName.get
                                                                    entryAddress.get()))
 
 button.grid(row=4, column=1, sticky=W+E)
+
+
+visualizaEstudiante()
 root.mainloop()

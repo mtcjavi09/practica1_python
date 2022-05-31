@@ -72,6 +72,24 @@ def muestraLinea(row):
     listBox.grid(row=10, columnspan=4, sticky=W+E)
     listBox.insert(END, row)
 
+#Función para eliminar al estudiante
+def eliminaEstudiante(id):
+     #Se ingresan credenciales
+    connection = psycopg2.connect(dbname="daads17to2qqm5",
+                     user="dstunsoypdpdpn",
+                     password="cbb5e68b3caffdb4b5dcfb015ea18957192c8c55560188602e666ddf3e881705",
+                     host="ec2-34-230-153-41.compute-1.amazonaws.com",
+                     port="5432")
+    #Se crea el cursor y se define y ejecuta la query             
+    cursor= connection.cursor()
+    query = '''DELETE FROM students WHERE id=%s'''
+    cursor.execute(query, (id))
+    #Se muestra que el estudiante ha sido eliminado
+    print("Estudiante eliminado")
+    #Se termina la conexión a la base de datos
+    connection.commit()
+    connection.close()
+    
 #Se crea el canva
 canvas=Canvas(root, height=3840, width=2160) 
 canvas.pack()
@@ -117,9 +135,20 @@ idBuscado.grid(row=6, column=1)
 button = Button(frame, text="Buscar", command=lambda:buscar(idBuscado.get()))
 button.grid(row=6, column=2, sticky=W+E)
 
+#Se crea el label para eliminar al estudiante por id
+label = Label(frame, text="Eliminar un estudiante")
+label.grid(row=7, column=1)
+label = Label(frame, text="Elimina por el id")
+label.grid(row=8, column=0)
+idEliminado = Entry(frame)
+idEliminado.grid(row=8, column=1)
+#Se agrega el botón para confirmar la búsqueda
+button = Button(frame, text="Eliminar", command=lambda:eliminaEstudiante(idEliminado.get()))
+button.grid(row=8, column=2, sticky=W+E)
+
 #Se agrega un último botón para ver a todos los estudiantes guardados
 button = Button(frame, text="Visualiza todos los estudiantes", command=lambda:visualizaEstudiante())
-button.grid(row=7, column=1, sticky=W+E)
+button.grid(row=9, column=1, sticky=W+E)
 
 #Termina la aplicación
 root.mainloop()

@@ -10,10 +10,10 @@ root.title("Python y PostgreSQL")
 #Se crea la función para guardar el estudiante en la base de datos
 def guardaEstudiante(name, age, address):
     #Se ingresan credenciales
-    connection= psycopg2.connect(dbname="daads17to2qqm5",
-                     user="dstunsoypdpdpn",
-                     password="cbb5e68b3caffdb4b5dcfb015ea18957192c8c55560188602e666ddf3e881705",
-                     host="ec2-34-230-153-41.compute-1.amazonaws.com",
+    connection= psycopg2.connect(dbname="d5a0497bddappg",
+                     user="rdqllzepdynuzr",
+                     password="242fb226916a7929e188bf698c74cd300b8f7fbd72c2ffef27e87693d244532e",
+                     host="ec2-44-196-174-238.compute-1.amazonaws.com",
                      port="5432")
     #Se crea el cursor y la query para insertar el nuevo estudiante
     cursor= connection.cursor()
@@ -28,10 +28,10 @@ def guardaEstudiante(name, age, address):
 #Se crea la función para ver todos los estudiantes guardados
 def visualizaEstudiante():
     #Se ingresan credenciales
-    connection= psycopg2.connect(dbname="daads17to2qqm5",
-                     user="dstunsoypdpdpn",
-                     password="cbb5e68b3caffdb4b5dcfb015ea18957192c8c55560188602e666ddf3e881705",
-                     host="ec2-34-230-153-41.compute-1.amazonaws.com",
+    connection= psycopg2.connect(dbname="d5a0497bddappg",
+                     user="rdqllzepdynuzr",
+                     password="242fb226916a7929e188bf698c74cd300b8f7fbd72c2ffef27e87693d244532e",
+                     host="ec2-44-196-174-238.compute-1.amazonaws.com",
                      port="5432")
     #Se crea el cursor y se define y ejecuta la query             
     cursor= connection.cursor()
@@ -50,10 +50,10 @@ def visualizaEstudiante():
 #Función para buscar al estudiante por el id
 def buscar(id):
     #Se ingresan credenciales
-    connection= psycopg2.connect(dbname="daads17to2qqm5",
-                     user="dstunsoypdpdpn",
-                     password="cbb5e68b3caffdb4b5dcfb015ea18957192c8c55560188602e666ddf3e881705",
-                     host="ec2-34-230-153-41.compute-1.amazonaws.com",
+    connection= psycopg2.connect(dbname="d5a0497bddappg",
+                     user="rdqllzepdynuzr",
+                     password="242fb226916a7929e188bf698c74cd300b8f7fbd72c2ffef27e87693d244532e",
+                     host="ec2-44-196-174-238.compute-1.amazonaws.com",
                      port="5432")
     #Se crea el cursor y se define y ejecuta la query
     cursor= connection.cursor()
@@ -75,10 +75,10 @@ def muestraLinea(row):
 #Función para eliminar al estudiante
 def eliminaEstudiante(id):
      #Se ingresan credenciales
-    connection = psycopg2.connect(dbname="daads17to2qqm5",
-                     user="dstunsoypdpdpn",
-                     password="cbb5e68b3caffdb4b5dcfb015ea18957192c8c55560188602e666ddf3e881705",
-                     host="ec2-34-230-153-41.compute-1.amazonaws.com",
+    connection = psycopg2.connect(dbname="d5a0497bddappg",
+                     user="rdqllzepdynuzr",
+                     password="242fb226916a7929e188bf698c74cd300b8f7fbd72c2ffef27e87693d244532e",
+                     host="ec2-44-196-174-238.compute-1.amazonaws.com",
                      port="5432")
     #Se crea el cursor y se define y ejecuta la query             
     cursor= connection.cursor()
